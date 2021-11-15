@@ -1,0 +1,2 @@
+# Digital-ordering-menu
+We have proposed to develop a digital solution in the form of an app to provide a secure dining experience to customers by enabling customers to view the menu of a restaurant by just scanning a QR code at their table and being able to order food at their convenience. As an addition to the main feature mentioned above, app users would also be able to access the list of restaurants available in and around a zip code in the US regions.
