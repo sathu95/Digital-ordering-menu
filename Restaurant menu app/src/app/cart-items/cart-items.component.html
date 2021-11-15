@@ -1,0 +1,21 @@
+<h4 class="review-order">
+  <span class="back" (click)="navigateToMenu()">⏎ Go to Menu</span>
+  Review Order
+</h4>
+<br />
+<div
+  *ngFor="let itemdetail of itemsAddedToCart; let i = index"
+  class="card text-white bg-secondary"
+>
+  <div class="menu-items">
+    <span class="itemName">{{ itemdetail.item }}</span>
+    <span class="price">${{ itemdetail.price }}</span>
+  </div>
+  <hr />
+</div>
+
+<div class="total-price">Total: ${{ totalAmount }}</div>
+<h4 class="success">
+  <b>{{ successMessage }}</b>
+</h4>
+<button class="place-order" (click)="placeOrder()">Place Order</button>

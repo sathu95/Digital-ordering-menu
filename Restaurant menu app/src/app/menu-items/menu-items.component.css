@@ -1,0 +1,86 @@
+.restaurant_name {
+  text-align: center;
+  font-size: 30px;
+  font-family: "Arial";
+  color: #0277bd;
+}
+
+.section-name {
+  font-size: 30px;
+  font-family: "Arial";
+  color: darkolivegreen;
+}
+
+.menu-items {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemName {
+  text-transform: initial;
+  margin-top: 10px;
+  /* margin-left: 25px; */
+}
+
+.price {
+  margin-left: 250px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.description {
+  text-transform: initial;
+  display: block;
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: 120;
+  font-style: italic;
+  /* margin-left: 25px; */
+}
+
+.quantityBtn{
+  height: 30px;
+  border-radius: 30%;
+  margin-top: 5px ;
+}
+
+.review-order {
+  display: block;
+  border: none;
+  background-color: #ff5d55;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 0 auto;
+  color: #fff;
+
+}
+
+.cart-items {
+  margin-left: 40px;
+}
+
+.no_of_items {
+  padding: 10px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .menu-items {
+    max-width: none;
+    display: block;
+  }
+  .price {
+    margin-left: 0px;
+    max-width: none;
+    display: block;
+  }
+  .item-price {
+    max-width: none;
+    display: block;
+  }
+  .cart-items {
+    margin-left: 0px;
+  }
+}

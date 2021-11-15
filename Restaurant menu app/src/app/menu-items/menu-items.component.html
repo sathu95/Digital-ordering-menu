@@ -1,0 +1,64 @@
+<h4 class="restaurant_name">{{ restaurant_details?.restaurantName }}</h4>
+
+<div
+  *ngFor="let section of restaurant_details?.section"
+  class="card text-dark bg-light"
+  style="padding: 5%"
+>
+  <h2 class="text-center">
+    <span class="section-name">{{ section.sectionName }}</span>
+
+    <div *ngFor="let itemdetail of section.items; let i = index">
+      <div class="menu-items">
+        <div class="menu">
+          <span class="itemName">{{ itemdetail.item }}</span>
+          <span class="description"
+          >Decription: {{ itemdetail.description }}</span
+          >
+        </div>
+        <div class="item-price">
+          <span class="price">${{ itemdetail.price }}</span>
+          <span class="cart-items">
+            <button class ="quantityBtn" (click)="addItem(itemdetail)">+</button>
+            <span class="no_of_items">{{
+              itemdetail.itemAddedToCart ?? 0
+              }}</span>
+          </span>
+          <button class ="quantityBtn" (click)="removeItem(itemdetail)">-</button>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </h2>
+</div>
+
+<!-- <div class="table-responsive">
+  <table class="table">
+    <thead class="row">
+      <tr>
+        <th class="col-3">Item</th>
+        <th class="col-3">Description</th>
+        <th class="col-3">Price($)</th>
+        <th class="col-3">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div *ngFor="let section of restaurant_details?.section">
+        <h2 class="section-name">
+          <span>{{ section.sectionName }}</span>
+        </h2>
+        <div *ngFor="let itemdetail of section.items; let i = index">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        </div>
+      </div>
+    </tbody>
+  </table>
+</div> -->
+<button class="review-order" (click)="reviewOrder(restaurant_details)">
+  Review Order
+</button>

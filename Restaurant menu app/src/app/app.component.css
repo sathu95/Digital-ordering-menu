@@ -1,0 +1,12 @@
+/* Style the body */
+body {
+  margin: 0;
+}
+
+/* Header/Logo Title */
+.header {
+  text-align: center;
+  color: #ff5d55;
+  font-size: 30px;
+  font-family: Aclonica;
+}
