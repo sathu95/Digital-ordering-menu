@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Aclonica"
+    />
+    <style>
+      /* Style the body */
+      body {
+        margin: 0;
+      }
+
+      /* Header/Logo Title */
+      .header {
+        text-align: center;
+        color: #ff5d55;
+        font-size: 30px;
+        font-family: Aclonica;
+      }
+
+      .form-head {
+        text-align: center;
+        color: black;
+        font-size: 25px;
+        font-family: "Roboto Light";
+        text-decoration: underline;
+      }
+
+      /* Style inputs, select elements and textareas */
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+
+      /* Style the label to display next to the inputs */
+      label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+      }
+
+      /* Style the submit button */
+      input[type="submit"] {
+        background-color: #04aa6d;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+      }
+
+      /* Style the container */
+      .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+
+      /* Floating column for labels: 25% width */
+      .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      /* Floating column for inputs: 75% width */
+      .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .container * {
+        box-sizing: border-box;
+      }
+
+      /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 1500px) and (max-height: 3000px) and (min-height: 100px) {
+        .col-25,
+        .col-75,
+        input[type="submit"],
+        .container {
+          width: 100%;
+          margin-top: 0;
+        }
+      }
+
+      .wrapper {
+        text-align: center;
+      }
+
+      .button {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        position: center;
+        background-color: #ff8a84;
+        border-radius: 20px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+        font-size: 28px;
+        width: 200px;
+        cursor: pointer;
+      }
+
+      .btn-remove-section {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background-color: #ff8a84;
+        border-radius: 20px;
+        border: 2px double #cccccc;
+        color: #eeeeee;
+        font-size: 12px;
+        width: 150px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .btn-add-item {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background-color: #ff8a84;
+        border-radius: 20px;
+        border: 2px double #cccccc;
+        color: #eeeeee;
+        font-size: 20px;
+        width: 70px;
+        cursor: pointer;
+      }
+
+      .btn-remove-item {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background-color: #ff8a84;
+        border-radius: 20px;
+        border: 2px double #cccccc;
+        color: #eeeeee;
+        font-size: 20px;
+        width: 70px;
+        cursor: pointer;
+      }
+
+      #a {
+        display: inline-block;
+        width: 200px;
+      }
+
+      #b {
+        display: inline-block;
+        width: 100px;
+      }
+
+      #c {
+        display: inline-block;
+        width: 250px;
+      }
+
+      li {
+        display: inline-block;
+        font-size: 20px;
+        padding: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>EATSY</h1>
+    </div>
+
+    <div class="form-head">
+      <H4>RESTAURANT MENU FORM</H4>
+    </div>
+
+    <!-- <div class="container">
+      <form></form>
+    </div> -->
+
+    <form [formGroup]="productForm">
+      <div class="row">
+        <div class="col-25">
+          <label style="font-size: 25px">Restaurant name </label>
+        </div>
+        <div class="col-75">
+          <input
+            type="text"
+            id="rname"
+            [formControlName]="'restaurant_name'"
+            placeholder="Restaurant name.."
+          />
+        </div>
+      </div>
+      <div formArrayName="sections">
+        <div *ngFor="let section of sections().controls; let secIndex = index">
+          <div class="container" [formGroupName]="secIndex">
+            <div class="col-25" for="name">
+              <label style="font-size: 20px">Section name </label>
+            </div>
+
+            <div class="col-75">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                formControlName="sectionName"
+                class="form-control"
+                placeholder="Enter new section"
+              />
+            </div>
+
+            <button
+              class="btn btn-remove-section"
+              (click)="removeSection(secIndex)"
+            >
+              Remove section
+            </button>
+
+            <div formArrayName="items">
+              <div
+                *ngFor="
+                  let item of sectionItems(secIndex).controls;
+                  let itemIndex = index
+                "
+              >
+                <div [formGroupName]="itemIndex">
+                  <ul class="nav">
+                    <li id="a">
+                      <input
+                        type="text"
+                        formControlName="item"
+                        class="form-control"
+                        placeholder="Item name"
+                      />
+                    </li>
+                    <li id="b">
+                      <input
+                        type="text"
+                        formControlName="price"
+                        class="form-control"
+                        placeholder="Price"
+                      />
+                    </li>
+                    <li id="c">
+                      <input
+                        type="text"
+                        formControlName="description"
+                        class="form-control"
+                        placeholder="Item description"
+                      />
+                    </li>
+                  </ul>
+
+                  <button
+                    type="button"
+                    class="btn btn-remove-item"
+                    (click)="removeSectionItems(secIndex, itemIndex)"
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-add-item"
+              (click)="addSectionItems(secIndex)"
+            >
+              +
+            </button>
+            <hr />
+          </div>
+        </div>
+        <div class="wrapper">
+          <button
+            type="button"
+            class="button"
+            style="font-size: 20px"
+            (click)="addSection()"
+          >
+            Add Section
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="wrapper">
+      <button type="submit" class="button" (click)="onSubmitFrom()">
+        Submit
+      </button>
+    </div>
+  </body>
+</html>
